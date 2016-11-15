@@ -12,9 +12,10 @@ cp $SYSLOG_NG_BUILD_PATH/syslog-ng.runit /etc/service/10-syslog-ng/run
 cp $SYSLOG_NG_BUILD_PATH/syslog-ng.check /etc/service/10-syslog-ng/check
 
 mkdir -p /var/lib/syslog-ng
+chmod 775 /var/lib/syslog-ng
 cp $SYSLOG_NG_BUILD_PATH/syslog_ng_default /etc/default/syslog-ng
 touch /var/log/syslog
-chmod u=rw,g=r,o= /var/log/syslog
+chmod 660 /var/log/syslog
 cp $SYSLOG_NG_BUILD_PATH/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
 
 ## Install syslog to "docker logs" forwarder.
@@ -24,3 +25,13 @@ cp $SYSLOG_NG_BUILD_PATH/syslog-forwarder.runit /etc/service/10-syslog-forwarder
 ## Install logrotate.
 $minimal_apt_get_install logrotate
 cp $SYSLOG_NG_BUILD_PATH/logrotate_syslogng /etc/logrotate.d/syslog-ng
+
+# Setup root created xconsole
+if [ ! -e /dev/xconsole ]; then
+  mknod -m 660 /dev/xconsole p
+fi
+
+mkdir /var/run/syslog-ng/
+chmod 775 /var/run/syslog-ng/
+ln -s /var/run/syslog-ng/log.sock /dev/log
+

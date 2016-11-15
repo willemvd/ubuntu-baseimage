@@ -6,6 +6,7 @@ set -x
 $minimal_apt_get_install cron
 mkdir /etc/service/20-cron
 chmod 600 /etc/crontab
+chmod +s /usr/sbin/cron
 cp /bd_build/services/cron/cron.runit /etc/service/20-cron/run
 
 ## Remove useless cron entries.

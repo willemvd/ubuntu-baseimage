@@ -1,5 +1,5 @@
-NAME = wingedkiwi/ubuntu-baseimage
-VERSION = 0.10.0
+NAME = willemvd/ubuntu-baseimage
+VERSION = 0.1.0
 
 .PHONY: all build test tag_release
 

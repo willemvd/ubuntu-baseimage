@@ -1,7 +1,7 @@
-FROM ubuntu:14.04
-MAINTAINER Chi Vinh Le <cvl@chinet.info>
+FROM ubuntu:latest
+MAINTAINER willemvd <willemvd@github>
 
-ADD . /bd_build
+COPY . /bd_build
 
 RUN /bd_build/prepare.sh && \
     /bd_build/system_services.sh && \

@@ -11,9 +11,7 @@ touch /etc/container_environment.sh
 touch /etc/container_environment.json
 chmod 700 /etc/container_environment
 
-groupadd -g 8377 docker_env
-chown :docker_env /etc/container_environment.sh /etc/container_environment.json
-chmod 640 /etc/container_environment.sh /etc/container_environment.json
+chmod -R 775 /etc/container_environment*
 ln -s /etc/container_environment.sh /etc/profile.d/
 
 ## Install runit.
@@ -24,3 +22,7 @@ $minimal_apt_get_install runit
 
 ## Install cron daemon.
 [ "$DISABLE_CRON" -eq 0 ] && /bd_build/services/cron/cron.sh || true
+
+## make all service folder and files writeable to everybody in root-group, so non-root users (but in the root group) can create set / remove disabled files
+chmod -R 775 /etc/service/*
+chmod -R 775 /run

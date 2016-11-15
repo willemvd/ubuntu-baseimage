@@ -44,3 +44,11 @@ locale-gen en_US
 update-locale LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8
 echo -n en_US.UTF-8 > /etc/container_environment/LANG
 echo -n en_US.UTF-8 > /etc/container_environment/LC_CTYPE
+
+## set some system wide settings for root-group access
+chmod 775 /dev /var/log /var/run
+
+$minimal_apt_get_install ed
+useradd --system -s /bin/bash -u 1234321 -g 0 unprivileged # uid to replace later in user script
+chmod 775 /home # keep writable for user group (root)
+chmod 664 /etc/passwd /etc/group # to help uid fix

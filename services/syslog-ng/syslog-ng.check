@@ -1,5 +1,5 @@
 #!/bin/bash
-file=/dev/log
+file=/var/run/syslog-ng/log.sock
 if [ -S "${file}" ]
 then
     exit 0
