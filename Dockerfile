@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:16.04
 MAINTAINER willemvd <willemvd@github>
 
 COPY . /bd_build
