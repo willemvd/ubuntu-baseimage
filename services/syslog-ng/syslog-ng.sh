@@ -35,3 +35,7 @@ mkdir /var/run/syslog-ng/
 chmod 775 /var/run/syslog-ng/
 ln -s /var/run/syslog-ng/log.sock /dev/log
 
+# make it possible to add additional conf file
+chmod g+w /etc/syslog-ng/conf.d
+# and update to logrotate file
+chmod g+w /etc/logrotate.d/syslog-ng
